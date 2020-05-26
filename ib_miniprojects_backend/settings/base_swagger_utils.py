@@ -25,7 +25,7 @@ INSTALLED_APPS += APPS
 
 THIRD_PARTY_SWAGGER_APPS = [
     # insert your apps here, in this order third part apps specific settings will be loaded.
-    "ib_sentry_wrapper",
+    # "ib_sentry_wrapper",
 ]
 INSTALLED_APPS += THIRD_PARTY_SWAGGER_APPS
 

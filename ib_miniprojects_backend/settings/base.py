@@ -282,9 +282,9 @@ TEMPLATES = [
 MIDDLEWARE = [
     'log_request_id.middleware.RequestIDMiddleware',  # request logging
     'django_swagger_utils.middlewares.reset_dsu_data_middleware.ResetDSUDataMiddleware',
-    'ib_sentry_wrapper.utils.response_status_code_4xx_5xx_middleware.ResponseStatusCode4xx5xxMiddleware',
-    'ib_sentry_wrapper.utils.request_id_middleware.RequestIdMiddleware',
-    'ib_sentry_wrapper.utils.dsu_data_middleware.DSUDataMiddleware',
+    # 'ib_sentry_wrapper.utils.response_status_code_4xx_5xx_middleware.ResponseStatusCode4xx5xxMiddleware',
+    # 'ib_sentry_wrapper.utils.request_id_middleware.RequestIdMiddleware',
+    # 'ib_sentry_wrapper.utils.dsu_data_middleware.DSUDataMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',  # django sessions, usefull in admin
     'corsheaders.middleware.CorsMiddleware',  # cors headers middleware
     'django.middleware.common.CommonMiddleware',
