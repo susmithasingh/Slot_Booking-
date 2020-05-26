@@ -1,6 +1,3 @@
-import os
-
-
 from ib_miniprojects_backend.settings.base import *
 
 # swagger utils #
@@ -16,11 +13,11 @@ STORE_LAST_ACCESS_OBJECT = True
 ################ Installed Apps ###############
 
 # Application definition
-from django_swagger_utils.drf_server.utils.general.import_app_settings import import_app_settings
+from django_swagger_utils.drf_server.utils.general.import_app_settings import \
+    import_app_settings
 
 THIRD_PARTY_APPS = []
 APPS = [
-    "mini_projects",
 ]
 
 INSTALLED_APPS += THIRD_PARTY_APPS
@@ -36,14 +33,15 @@ INSTALLED_APPS += THIRD_PARTY_SWAGGER_APPS
 for app_name in THIRD_PARTY_SWAGGER_APPS + APPS:
     try:
         _dict = import_app_settings(app_name)
-        locals().update({name: _dict["module_dict"][name] for name in _dict["to_import"]})
+        locals().update(
+            {name: _dict["module_dict"][name] for name in _dict["to_import"]})
     except ImportError as err:
         print(err)
 
-
 # *************************** Swagger Utils ***************************
 
-from django_swagger_utils.drf_server.utils.decorator.getDecryptedData import getDecryptedData
+from django_swagger_utils.drf_server.utils.decorator.getDecryptedData import \
+    getDecryptedData
 from django_swagger_utils.drf_server.utils.decorator.getPrivateKeyFromClientKeyRelatedDetails import \
     getPrivateKeyFromClientKeyRelatedDetails
 
@@ -58,18 +56,15 @@ SWAGGER_UTILS = {
     "CUSTOM_EXCEPTIONS": {
         "CustomException": {
             "http_status_code": 404,
-            "is_json" : True,
+            "is_json": True,
         }
     },
     "APPS": {
-        "mini_projects": {},
     },
     "HOST": os.environ.get('APIGATEWAY_ENDPOINT', '127.0.0.1:8000'),
 }
 
 API_KEY_AUTHENTICATION_CLASS = \
     "ib_miniprojects_backend.common.authentication.APIKeyAuthentication"
-
-
 
 CUSTOM_EXCEPTIONS_TO_LOG_IN_SENTRY = []
