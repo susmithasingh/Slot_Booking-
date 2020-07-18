@@ -31,7 +31,7 @@ class OAuth2SQLStorage:
                 name=application_name
             )
             is_created = True
-
+        print(application, is_created)
         return self._convert_application_to_its_dto(application=application), \
                is_created
 
