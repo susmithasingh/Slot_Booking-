@@ -26,6 +26,7 @@ class UserLoginInteractor:
         is_valid_username = self.storage.validate_username(
                 username=username
             )
+        print(is_valid_username)
         not_valid_username = not is_valid_username
 
         if not_valid_username:

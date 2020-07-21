@@ -6,3 +6,6 @@ class InvalidUsernameException(Exception):
 
 class InvalidPasswordException(Exception):
     pass
+
+class InvalidWashingMachineId(Exception):
+    pass

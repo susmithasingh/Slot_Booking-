@@ -34,10 +34,10 @@ def api_wrapper(*args, **kwargs):
         presenter=presenter,
         oauth_storage=oauth_storage
     )
+
     response = interactor.user_login_interactor(
         username=username,
         password=password)
-    print("$$$$$$$$$$$$$$$$$$$$$$$$$$$4")
     # print(response)
     # data = json.dumps({"response": response})
     # response = HttpResponse(data, status=200)

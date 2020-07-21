@@ -46,6 +46,40 @@
 				"username",
 				"password"
 			]
+		},
+		"mechine_id": {
+			"type": "object",
+			"properties": {
+				"washing_mechine_id": {
+					"type": "integer",
+					"format": "int32"
+				}
+			},
+			"required": [
+				"washing_mechine_id"
+			]
+		},
+		"list_of_machine_details": {
+			"type": "object",
+			"properties": {
+				"washing_machine_id": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"is_active": {
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"washing_machine_id",
+				"is_active"
+			]
+		},
+		"total_washing_machines_details": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/list_of_machine_details"
+			}
 		}
 	},
 	"parameters": {
@@ -54,6 +88,13 @@
 			"in": "body",
 			"schema": {
 				"$ref": "#/definitions/login_user"
+			}
+		},
+		"WashingMechinedetailsParameter": {
+			"name": "user_details",
+			"in": "body",
+			"schema": {
+				"$ref": "#/definitions/mechine_id"
 			}
 		}
 	},
@@ -71,6 +112,12 @@
 					"access_token"
 				]
 			}
+		},
+		"GetAllWashingMachineDetailsResponse": {
+			"description": "",
+			"schema": {
+						"$ref": "#/definitions/total_washing_machines_details"
+				}
 		}
 	},
 	"paths": {
@@ -91,7 +138,45 @@
 					}
 				}
 			}
+		},
+		"/add/new_washing_mechine/": {
+			"post": {
+				"operationId": "Create_New_Washing_Mechine",
+				"description": "Create New Washing Mechine",
+				"security": [{
+					"oauth": [
+						"write"
+					]
+				}],
+				"parameters": [{
+					"$ref": "#/parameters/WashingMechinedetailsParameter"
+				}],
+				"responses": {
+					"200": {
+						"description": "Successfully Added"
+					},
+					"404": {
+						"description": "Invalid Mechine_id"
+					}
+				}
+			}
+		},
+		"/get/all_washing_mechine_detalis": {
+			"get": {
+				"security": [{
+					"oauth": [
+						"read"
+					]
+				}],
+				"operationId": "Get_All_Washing_Mechine_Details",
+				"description": "Get all washing mechine details",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"$ref": "#/responses/GetAllWashingMachineDetailsResponse"
+					}
+				}
+			}
 		}
-
 	}
 }

@@ -12,3 +12,9 @@ INVALID_PASSWORD = (
     "Invalid password, try with valid_password",
     "INVALID_PASSWORD"
 )
+
+
+INVALID_MACHINE_ID = (
+    "Invalid machine id, try with valid_machine_id",
+    "INVALID_MACHINE_ID"
+)
