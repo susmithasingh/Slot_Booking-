@@ -1,182 +1,332 @@
 {
-	"swagger": "2.0",
-	"host": "localhost:8000",
-	"basePath": "/api/slot_booking/",
-	"info": {
-		"version": "1.0.0",
-		"title": "Washing Mechine Slot Booking",
-		"description": "mini_project(assignment_1)"
-	},
-	"schemes": [
-		"https",
-		"http"
-	],
-	"consumes": [
-		"application/json"
-	],
-	"produces": [
-		"application/json"
-	],
-	"securityDefinitions": {
-		"oauth": {
-			"tokenUrl": "http://auth.ibtspl.com/oauth2/",
-			"flow": "password",
-			"scopes": {
-				"read": "read users",
-				"write": "create users",
-				"update": "update users",
-				"delete": "delete users",
-				"superuser": "super user permission"
-			},
-			"type": "oauth2"
-		}
-	},
-	"definitions": {
-		"login_user": {
-			"type": "object",
-			"properties": {
-				"username": {
-					"type": "string"
-				},
-				"password": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"username",
-				"password"
-			]
-		},
-		"mechine_id": {
-			"type": "object",
-			"properties": {
-				"washing_mechine_id": {
-					"type": "integer",
-					"format": "int32"
-				}
-			},
-			"required": [
-				"washing_mechine_id"
-			]
-		},
-		"list_of_machine_details": {
-			"type": "object",
-			"properties": {
-				"washing_machine_id": {
-					"type": "integer",
-					"format": "int32"
-				},
-				"is_active": {
-					"type": "boolean"
-				}
-			},
-			"required": [
-				"washing_machine_id",
-				"is_active"
-			]
-		},
-		"total_washing_machines_details": {
-			"type": "array",
-			"items": {
-				"$ref": "#/definitions/list_of_machine_details"
-			}
-		}
-	},
-	"parameters": {
-		"UserdetailsParameter": {
-			"name": "user_details",
-			"in": "body",
-			"schema": {
-				"$ref": "#/definitions/login_user"
-			}
-		},
-		"WashingMechinedetailsParameter": {
-			"name": "user_details",
-			"in": "body",
-			"schema": {
-				"$ref": "#/definitions/mechine_id"
-			}
-		}
-	},
-	"responses": {
-		"GenerateAccesstokenResponse": {
-			"description": "",
-			"schema": {
-				"type": "object",
-				"properties": {
-					"access_token": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"access_token"
-				]
-			}
-		},
-		"GetAllWashingMachineDetailsResponse": {
-			"description": "",
-			"schema": {
-						"$ref": "#/definitions/total_washing_machines_details"
-				}
-		}
-	},
-	"paths": {
-		"/user/login/": {
-			"post": {
-				"security": [],
-				"operationId": "get_access_Token",
-				"description": "Delete given prefilled code",
-				"parameters": [{
-					"$ref": "#/parameters/UserdetailsParameter"
-				}],
-				"responses": {
-					"200": {
-						"$ref": "#/responses/GenerateAccesstokenResponse"
-					},
-					"404": {
-						"description": "Invalid username or password"
-					}
-				}
-			}
-		},
-		"/add/new_washing_mechine/": {
-			"post": {
-				"operationId": "Create_New_Washing_Mechine",
-				"description": "Create New Washing Mechine",
-				"security": [{
-					"oauth": [
-						"write"
-					]
-				}],
-				"parameters": [{
-					"$ref": "#/parameters/WashingMechinedetailsParameter"
-				}],
-				"responses": {
-					"200": {
-						"description": "Successfully Added"
-					},
-					"404": {
-						"description": "Invalid Mechine_id"
-					}
-				}
-			}
-		},
-		"/get/all_washing_mechine_detalis": {
-			"get": {
-				"security": [{
-					"oauth": [
-						"read"
-					]
-				}],
-				"operationId": "Get_All_Washing_Mechine_Details",
-				"description": "Get all washing mechine details",
-				"parameters": [],
-				"responses": {
-					"200": {
-						"$ref": "#/responses/GetAllWashingMachineDetailsResponse"
-					}
-				}
-			}
-		}
-	}
+  "swagger": "2.0",
+  "host": "localhost:8000",
+  "basePath": "/api/slot_booking/",
+  "info": {
+    "version": "1.0.0",
+    "title": "Washing Mechine Slot Booking",
+    "description": "mini_project(assignment_1)"
+  },
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "oauth": {
+      "tokenUrl": "http://auth.ibtspl.com/oauth2/",
+      "flow": "password",
+      "scopes": {
+        "read": "read users",
+        "write": "create users",
+        "update": "update users",
+        "delete": "delete users",
+        "superuser": "super user permission"
+      },
+      "type": "oauth2"
+    }
+  },
+  "definitions": {
+    "login_user": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "password"
+      ]
+    },
+    "mechine_id": {
+      "type": "object",
+      "properties": {
+        "washing_mechine_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "washing_mechine_id"
+      ]
+    },
+    "list_of_machine_details": {
+      "type": "object",
+      "properties": {
+        "washing_machine_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "is_active": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "washing_machine_id",
+        "is_active"
+      ]
+    },
+    "total_washing_machines_details": {
+      "type": "object",
+      "properties":{
+        "all_washing_machine_details":{
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/list_of_machine_details"
+          }
+        }
+      }
+    },
+    "washing_machine_slots":{
+      "type":"object",
+      "properties": {
+        "slot":{
+          "type": "string"
+        },
+        "from_time": {
+          "type": "string",
+          "format": "time"
+        },
+        "to_time":{
+          "type":"string",
+          "format": "time"
+        }
+      },
+      "required":[
+        "slot",
+        "from_time",
+        "to_time"
+      ]
+    },
+    "List_of_washing_machine_slots":{
+      "type": "array",
+      "items" : {
+        "$ref": "#/definitions/washing_machine_slots"
+      }
+    },
+    "reported_issues":{
+      "type": "object",
+      "properties": {
+        "issue":{
+          "type": "string"
+        },
+        "reported_date_time":{
+          "type": "string",
+          "format": "datetime"
+        },
+        "is_resolved":{
+          "type": "boolean"
+        }
+      },
+      "required":[
+        "issue",
+        "reported_date_time",
+        "is_resolved"
+      ]
+    },
+    "list_of_reported_issues":{
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/reported_issues"
+      }
+    }
+  },
+  "parameters": {
+    "UserdetailsParameter": {
+      "name": "user_details",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/login_user"
+      }
+    },
+    "UpdateWashingMachineSlotsParameter":{
+      "name": "washing_machine_slots",
+      "in": "body",
+      "schema": {
+                "$ref": "#/definitions/list_of_machine_details"
+            }
+    },
+    "WashingMechinedetailsParameter": {
+      "name": "user_details",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/mechine_id"
+      }
+    }
+  },
+  "responses": {
+    "GenerateAccesstokenResponse": {
+      "description": "",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "access_token"
+        ]
+      }
+    },
+    "GetAllWashingMachineDetailsResponse": {
+      "description": "",
+      "schema": {
+            "$ref": "#/definitions/total_washing_machines_details"
+        }
+    },
+    "GetAllWashingMachineSlotsResponses":{
+      "description": "",
+      "schema":{
+        "$ref":"#/definitions/List_of_washing_machine_slots"
+      }
+    },
+    "GetListOfReportedIssues":{
+      "description": "",
+      "schema":{
+        "$ref": "#/definitions/list_of_reported_issues"
+      }
+    }
+  },
+  "paths": {
+    "/user/login/": {
+      "post": {
+        "security": [],
+        "operationId": "get_access_Token",
+        "description": "Delete given prefilled code",
+        "parameters": [{
+          "$ref": "#/parameters/UserdetailsParameter"
+        }],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/GenerateAccesstokenResponse"
+          },
+          "404": {
+            "description": "Invalid username or password"
+          }
+        }
+      }
+    },
+    "/add/new_washing_mechine/": {
+      "post": {
+        "operationId": "Create_New_Washing_Mechine",
+        "description": "Create New Washing Mechine",
+        "security": [{
+          "oauth": [
+            "write"
+          ]
+        }],
+        "parameters": [{
+          "$ref": "#/parameters/WashingMechinedetailsParameter"
+        }],
+        "responses": {
+          "200": {
+            "description": "Successfully Added"
+          },
+          "404": {
+            "description": "Invalid Mechine_id"
+          }
+        }
+      }
+    },
+    "/get/all_washing_mechine_detalis": {
+      "get": {
+        "security": [{
+          "oauth": [
+            "read"
+          ]
+        }],
+        "operationId": "Get_All_Washing_Mechine_Details",
+        "description": "Get all washing mechine details",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/GetAllWashingMachineDetailsResponse"
+          }
+        }
+      }
+    },
+    "/update/washing_machine_status/":{
+      "put":{
+        "operationId": "Update_Washing_Machine_stuats",
+        "description": "update washing machine status",
+        "security":[{
+          "oauth":[
+            "update"
+            ]
+        }],
+        "parameters":[
+          {
+            "$ref":"#/parameters/UpdateWashingMachineSlotsParameter"
+          }
+        ],
+        "responses":{
+          "200":{
+            "description": ""
+          }
+        }
+      }
+    },
+    "/get/washing_machine_slot_details/{washing_machine_id}/{day}":{
+      "get":{
+        "operationId": "Get_Washing_Machine_Slot_Details",
+        "description": "Get all washing machine slots details",
+         "security": [{
+          "oauth": [
+            "read"
+          ]
+        }],
+        "parameters": [
+          {
+            "name" : "washing_machine_id",
+            "in": "path",
+            "required":true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "day",
+            "in":"path",
+            "required": true,
+            "type": "string",
+            "enum": ["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"]
+          }
+        ],
+        "responses":{
+          "200":{
+            "$ref": "#/responses/GetAllWashingMachineSlotsResponses"
+          },
+          "404":{
+            "description": "Invalid Machine Id"
+          }
+        }
+      }
+    },
+    "/get/reported_issues":{
+      "get":{
+        "operationId": "Get_Reported_Issues",
+        "description": "Get all the reported issues",
+        "security": [{
+          "oauth": [
+            "read"
+          ]
+        }],
+        "parameters":[],
+        "responses":{
+          "200":{
+            "$ref": "#/responses/GetListOfReportedIssues"
+          }
+        }
+      }
+    }
+  }
 }

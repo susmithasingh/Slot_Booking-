@@ -12,3 +12,12 @@ class CodeLanguage(BaseEnumClass, enum.Enum):
     python38 = "PYTHON38"
     python38_datascience = "PYTHON38_DATASCIENCE"
     python38_aiml = "PYTHON38_AIML"
+
+class ListOfDays(enum.Enum):
+    sunday = "SUNDAY"
+    monday = "MONDAY"
+    tuesday = "TUESDAY"
+    wednesday = "WEDNESDAY"
+    thursday = "THURSDAY"
+    friday = "FRIDAY"
+    saturday = "SATURDAY"

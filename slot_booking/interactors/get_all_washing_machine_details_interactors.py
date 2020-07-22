@@ -8,6 +8,4 @@ class GetWashingMachineDetailsInteractor():
     def get_washing_machine_details(self):
 
         data = self.presenter.get_all_washing_machines_details_response()
-        print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-        print(data)
         return data
