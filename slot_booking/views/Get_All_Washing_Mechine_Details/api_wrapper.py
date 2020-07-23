@@ -26,7 +26,8 @@ def api_wrapper(*args, **kwargs):
     print('**************')
     print(data1)
     print("******************")
-    return HttpResponse(data1, status=200)
+    response =  HttpResponse(data1, status=200)
+    return response
     #
     # print("************************")
     # print(response.content)

@@ -29,6 +29,8 @@ def api_wrapper(*args, **kwargs):
             washing_machine_id=washing_machine_id,
             day=day
     )
+    print(data)
+    print("###########################*********************3#########################3")
     data = json.dumps(data)
     response = HttpResponse(data, status=200)
     return response

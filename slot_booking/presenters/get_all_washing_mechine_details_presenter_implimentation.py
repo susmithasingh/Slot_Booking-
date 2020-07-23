@@ -14,5 +14,6 @@ class GetWashingMachineDetailsPresenterImplementation(GetWashingMachineDetailsPr
             all_washing_machine_details = {}
             all_washing_machine_details["washing_machine_id"] = data.washing_machine_id
             all_washing_machine_details["is_active"] = data.is_active
+            all_washing_machine_details["washing_machine_image"] = data.washing_machine_image
             all_machine_details.append(all_washing_machine_details)
         return all_machine_details

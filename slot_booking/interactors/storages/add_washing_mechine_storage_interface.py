@@ -8,5 +8,5 @@ class AddNewWashingMachineStorageInterface(ABC):
         pass
 
     @abstractmethod
-    def create_new_washing_machine(self, washing_machine_id: int) -> int:
+    def create_new_washing_machine(self, washing_machine_id: int, washing_machine_image: str) -> int:
         pass

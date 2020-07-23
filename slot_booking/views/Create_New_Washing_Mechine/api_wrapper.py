@@ -14,9 +14,9 @@ from slot_booking.storages.create_new_washing_mechine import AddNewWashingMachin
 def api_wrapper(*args, **kwargs):
     # ---------MOCK IMPLEMENTATION---------
 
-    request_data= kwargs['request_data']
-    print(request_data)
+    request_data = kwargs['request_data']
     washing_machine_id = request_data['washing_mechine_id']
+    washing_machine_image = request_data["washing_machine_image"]
     storage = AddNewWashingMachineStorageImplimentation()
     presenter = AddNewWashingMachinePresenterImplementation()
 
@@ -24,7 +24,10 @@ def api_wrapper(*args, **kwargs):
         storage=storage,
         presenter=presenter
     )
-    data = interactor.create_new_washing_machine(washing_machine_id=washing_machine_id)
-    data = json.dumps(data)
-    response = HttpResponse(data, status=200)
+    interactor.create_new_washing_machine(
+        washing_machine_id=washing_machine_id,
+        washing_machine_image=washing_machine_image)
+
+
+    response = HttpResponse(status=200)
     return response

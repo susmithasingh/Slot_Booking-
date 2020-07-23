@@ -42,4 +42,8 @@ class GetWashingMachineSlots():
         list_of_slot_details = self.storage.get_washing_machine_slots(
                 washing_machine_id=washing_machine_id,
                 day=day)
-        return list_of_slot_details
+        return {
+            "washing_machine_id": washing_machine_id,
+            "day": day,
+            "slot_details": list_of_slot_details
+        }

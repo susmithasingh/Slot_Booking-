@@ -53,6 +53,22 @@
         "washing_mechine_id": {
           "type": "integer",
           "format": "int32"
+        },
+        "washing_machine_image":{
+          "type": "string"
+        }
+      },
+      "required": [
+        "washing_mechine_id",
+        "washing_machine_image"
+      ]
+    },
+    "washing_machine":{
+      "type": "object",
+      "properties": {
+        "washing_mechine_id": {
+          "type": "integer",
+          "format": "int32"
         }
       },
       "required": [
@@ -60,6 +76,26 @@
       ]
     },
     "list_of_machine_details": {
+      "type": "object",
+      "properties": {
+        "washing_machine_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "is_active": {
+          "type": "boolean"
+        },
+        "washing_machine_image":{
+          "type": "string"
+        }
+      },
+      "required": [
+        "washing_machine_id",
+        "is_active",
+        "washing_machine_image"
+      ]
+    },
+    "list_of_washing_machine":{
       "type": "object",
       "properties": {
         "washing_machine_id": {
@@ -89,7 +125,7 @@
     "washing_machine_slots":{
       "type":"object",
       "properties": {
-        "slot":{
+        "slots":{
           "type": "string"
         },
         "from_time": {
@@ -102,7 +138,7 @@
         }
       },
       "required":[
-        "slot",
+        "slots",
         "from_time",
         "to_time"
       ]
@@ -111,6 +147,22 @@
       "type": "array",
       "items" : {
         "$ref": "#/definitions/washing_machine_slots"
+      }
+    },
+    "washing_machine_slot_details":{
+      "type":"object",
+      "properties":{
+        "washing_machine_id":{
+          "type":"integer",
+          "format":"int32"
+        },
+        "day":{
+          "type": "string",
+          "enum": ["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"]
+        },
+        "slot_details":{
+          "$ref": "#/definitions/List_of_washing_machine_slots"
+        }
       }
     },
     "reported_issues":{
@@ -138,6 +190,34 @@
       "items": {
         "$ref": "#/definitions/reported_issues"
       }
+    },
+    "issues":{
+      "type":"object",
+      "properties":{
+        "total_no_of_issues":{
+          "type": "integer",
+          "format": "int32"
+        },
+        "list_of_issues":{
+          "$ref": "#/definitions/list_of_reported_issues"
+        }
+      }
+    },
+    "resolved_status":{
+      "type":"object",
+      "properties":{
+        "machine_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "is_resolved":{
+          "type": "boolean"
+        }
+      },
+      "required":[
+       "machine_id",
+       "is_resolved"
+      ]
     }
   },
   "parameters": {
@@ -148,11 +228,11 @@
         "$ref": "#/definitions/login_user"
       }
     },
-    "UpdateWashingMachineSlotsParameter":{
+    "UpdateWashingMachineParameter":{
       "name": "washing_machine_slots",
       "in": "body",
       "schema": {
-                "$ref": "#/definitions/list_of_machine_details"
+                "$ref": "#/definitions/list_of_washing_machine"
             }
     },
     "WashingMechinedetailsParameter": {
@@ -160,6 +240,13 @@
       "in": "body",
       "schema": {
         "$ref": "#/definitions/mechine_id"
+      }
+    },
+    "UpdateIssuesResolvedStatusParameter":{
+      "name": "machine_id",
+      "in":"body",
+      "schema":{
+        "$ref": "#/definitions/resolved_status"
       }
     }
   },
@@ -187,13 +274,13 @@
     "GetAllWashingMachineSlotsResponses":{
       "description": "",
       "schema":{
-        "$ref":"#/definitions/List_of_washing_machine_slots"
+        "$ref":"#/definitions/washing_machine_slot_details"
       }
     },
     "GetListOfReportedIssues":{
       "description": "",
       "schema":{
-        "$ref": "#/definitions/list_of_reported_issues"
+        "$ref": "#/definitions/issues"
       }
     }
   },
@@ -266,7 +353,7 @@
         }],
         "parameters":[
           {
-            "$ref":"#/parameters/UpdateWashingMachineSlotsParameter"
+            "$ref":"#/parameters/UpdateWashingMachineParameter"
           }
         ],
         "responses":{
@@ -311,7 +398,7 @@
         }
       }
     },
-    "/get/reported_issues":{
+    "/get/reported_issues/":{
       "get":{
         "operationId": "Get_Reported_Issues",
         "description": "Get all the reported issues",
@@ -320,10 +407,45 @@
             "read"
           ]
         }],
-        "parameters":[],
+        "parameters":[{
+                    "name": "offset",
+                    "in": "query",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                },
+                {
+                    "name": "limit",
+                    "in": "query",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int32"
+                }
+        ],
         "responses":{
           "200":{
             "$ref": "#/responses/GetListOfReportedIssues"
+          }
+        }
+      }
+    },
+    "/update/issues/is_resolved":{
+      "put":{
+        "security":[{
+          "oauth":[
+            "update"
+          ]
+        }],
+        "operationId": "Update_Issues_status",
+        "description": "Update Issues status",
+        "parameters":[
+          {
+            "$ref": "#/parameters/UpdateIssuesResolvedStatusParameter"
+          }
+        ],
+        "responses":{
+          "200":{
+            "description": ""
           }
         }
       }

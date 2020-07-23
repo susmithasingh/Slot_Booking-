@@ -1,6 +1,11 @@
-INVALID_OFFSET_LENGTH = (
+INVALID_OFFSET = (
     'Offset should be greater than or equal to zero and length should be '
-    'greater than zero', 'INVALID_OFFSET_LENGTH'
+    'greater than zero', 'INVALID_OFFSET'
+)
+
+INVALID_LIMIT = (
+    'Offset should be greater than or equal to zero and length should be '
+    'greater than zero', 'INVALID_LIMIT'
 )
 
 INVALID_USER_NAME = (

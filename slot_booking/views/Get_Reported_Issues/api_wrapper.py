@@ -13,6 +13,10 @@ from slot_booking.interactors.get_reported_issues_interactor import GetReportedI
 
 @validate_decorator(validator_class=ValidatorClass)
 def api_wrapper(*args, **kwargs):
+    request_data = kwargs['request_query_params']
+    offset = request_data['offset']
+    limit = request_data['limit']
+    print(offset, limit)
     presenter = GetReportedIssuesPresenterImplementation()
     storage = GetReportedIssuesStorageImplementation()
 
@@ -20,8 +24,9 @@ def api_wrapper(*args, **kwargs):
         storage=storage,
         presenter=presenter
     )
-    data = interactor.get_reported_issues()
+    data = interactor.get_reported_issues(offset=offset, limit=limit)
     print(data)
     data = json.dumps(data)
+    print("-----", data)
     response = HttpResponse(data, status=200)
     return response

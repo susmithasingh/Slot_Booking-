@@ -10,7 +10,10 @@ class AddNewWashingMachineStorageImplimentation(AddNewWashingMachineStorageInter
         else:
             return True
 
-    def create_new_washing_machine(self, washing_machine_id: int) -> int:
+    def create_new_washing_machine(
+            self, washing_machine_id: int, washing_machine_image: str) -> int:
 
-        new_machine_id = WashingMechine.objects.create(washing_machine_id=washing_machine_id)
+        new_machine_id = WashingMechine.objects.create(
+            washing_machine_id=washing_machine_id,
+            washing_machine_image=washing_machine_image)
         return new_machine_id
