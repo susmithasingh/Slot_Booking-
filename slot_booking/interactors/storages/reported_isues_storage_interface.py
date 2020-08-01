@@ -20,14 +20,18 @@ class GetReportedIssuesStorageInterface(ABC):
     def create_issue(self, issue: str):
         pass
 
-    # @abstractmethod
-    # def is_valid_offset(self, offset: int):
-    #     pass
-    #
-    # @abstractmethod
-    # def is_valid_limit(self, limit: int):
-    #     pass
+    @abstractmethod
+    def is_valid_offset(self, offset: int):
+        pass
+
+    @abstractmethod
+    def is_valid_limit(self, limit: int):
+        pass
 
     @abstractmethod
     def get_total_number_of_issues(self):
+        pass
+
+    @abstractmethod
+    def validate_issue(self, issue: str):
         pass

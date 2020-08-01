@@ -7,6 +7,7 @@ class UserAuthTokensDTO:
     user_id: str
     access_token: str
     refresh_token: str
+    role: bool
     expires_in: datetime.datetime
 
 
@@ -14,6 +15,7 @@ class UserAuthTokensDTO:
 class AccessTokenDTO:
     access_token_id: int
     token: str
+    role: bool
     expires: datetime.datetime
 
 

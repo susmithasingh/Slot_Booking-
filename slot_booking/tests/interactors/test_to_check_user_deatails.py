@@ -80,7 +80,8 @@ def test_to_get_access_token_with_the_given_user_id(oauth_mock):
     oauth_mock.return_value = UserAuthTokensDTO(user_id = "1",
                 access_token = "1234567890",
                 refresh_token = "abcdefghi",
-                expires_in = "abdcdc")
+                expires_in = "abdcdc",
+                role=False)
 
     storage.get_user_id.return_value = user_id
     presenter.get_response.return_value = excepted_output

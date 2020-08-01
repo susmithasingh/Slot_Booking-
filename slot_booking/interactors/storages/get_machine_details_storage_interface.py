@@ -16,3 +16,7 @@ class GetWashingMachineSlotsStorageInterface(ABC):
             washing_machine_id: int,
             day: str) -> List[dict]:
         pass
+
+    @abstractmethod
+    def create_or_update_washing_machine_slots(self,):
+        pass

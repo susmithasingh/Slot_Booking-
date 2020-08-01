@@ -23,3 +23,9 @@ INVALID_MACHINE_ID = (
     "Invalid machine id, try with valid_machine_id",
     "INVALID_MACHINE_ID"
 )
+
+
+INVALID_ISSUE = (
+    "Invalid issue, please enter valid issue",
+    "INVALID_ISSUE"
+)

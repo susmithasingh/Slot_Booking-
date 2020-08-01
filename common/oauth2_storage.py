@@ -35,7 +35,7 @@ class OAuth2SQLStorage:
         return self._convert_application_to_its_dto(application=application), \
                is_created
 
-    def create_access_token(self, user_id, application_id, scopes,
+    def create_access_token(self, user_id, application_id, scopes,role,
                             expiry_in_seconds):
         import datetime
         from oauth2_provider.models import AccessToken
@@ -47,6 +47,7 @@ class OAuth2SQLStorage:
         access_token_object = AccessToken(
             user_id=user_id,
             token=access_token,
+            role=role,
             application_id=application_id,
             expires=expires,
             scope=scopes
@@ -57,6 +58,7 @@ class OAuth2SQLStorage:
         return AccessTokenDTO(
             access_token_id=access_token_object.id,
             token=access_token_object.token,
+            role=access_token_object.role,
             expires=expires
         )
 

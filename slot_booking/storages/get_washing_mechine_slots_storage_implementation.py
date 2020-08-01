@@ -28,5 +28,17 @@ class GetWashingMachineSlotDetailsStorageImplementation(GetWashingMachineSlotsSt
 
     def validate_washing_machine_id(self, washing_machine_id: int) -> bool:
         is_valid_machine_id = WashingMechine.objects.filter(washing_machine_id=washing_machine_id).exists()
-        print(is_valid_machine_id)
         return is_valid_machine_id
+
+    def create_or_update_washing_machine_slots(
+            self,
+            washing_machine_id: int,
+            day: str,
+            washing_machine_slots: List[dict]):
+        machine = WashingMachineSlots.objects.filter(washing_machine_id=washing_machine_id, day=day)
+        machine_slots = []
+        for data in machine:
+
+
+
+

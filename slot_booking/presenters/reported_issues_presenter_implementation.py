@@ -18,8 +18,11 @@ class GetReportedIssuesPresenterImplementation(GetReportedIssuesPresenterInterfa
 
 
 
-    # def raise_invalid_offset_exception(self):
-    #     raise NotFound(*INVALID_OFFSET)
-    #
-    # def raise_invalid_limit_exception(self):
-    #     raise NotFound(*INVALID_LIMIT)
+    def raise_invalid_offset_exception(self):
+        raise NotFound(*INVALID_OFFSET)
+
+    def raise_invalid_limit_exception(self):
+        raise NotFound(*INVALID_LIMIT)
+
+    def raise_invalid_issue_exception(self):
+        raise NotFound(*INVALID_ISSUE)

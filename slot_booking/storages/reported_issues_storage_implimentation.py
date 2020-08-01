@@ -5,27 +5,29 @@ from slot_booking.models import Issues
 
 class GetReportedIssuesStorageImplementation(GetReportedIssuesStorageInterface):
 
-    # def is_valid_offset(self, offset: int) -> bool:
-    #
-    #     if offset < 0:
-    #         return False
-    #     else:
-    #         return True
-    #
-    # def is_valid_limit(self, limit: int) -> bool:
-    #     if limit >= 10:
-    #         return False
-    #     else:
-    #         return True
+    def is_valid_offset(self, offset: int) -> bool:
+
+        if offset < 0:
+            return False
+        else:
+            return True
+
+    def is_valid_limit(self, limit: int) -> bool:
+        if limit >= 10:
+            return False
+        else:
+            return True
+    def validate_issue(self, issue: str) -> bool:
+        if issue == "" :
+            return False
+        else:
+            return True
 
     def get_all_reported_issues(self, offset: int, limit: int):
         issue_data = Issues.objects.all()
         data = issue_data[offset:offset+limit]
         reported_issues =[]
         for issues in data:
-            print(issues)
-            print("%%%%%%%%%%%%%%%%%*****************")
-            print(type(issues))
             all_reported_issues = {}
             all_reported_issues["issue"] = issues.issue
             all_reported_issues["reported_date_time"] = str(issues.reported_date_time)

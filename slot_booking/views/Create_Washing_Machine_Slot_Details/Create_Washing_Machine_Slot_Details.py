@@ -1,5 +1,5 @@
 from functools import reduce
-def get_access_Token(*args, **kwargs):  # pylint: disable=invalid-name
+def Create_Washing_Machine_Slot_Details(*args, **kwargs):  # pylint: disable=invalid-name
     """
     Note: replace below mock implementation with your actual implementation
 
